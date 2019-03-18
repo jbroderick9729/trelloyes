@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import Card from './Card.js';
+import './List.css';
 
 class List extends Component {
     render() {
-        let cards = store.lists.cardIds;
-        let cardsArr = [];
-        for (let i = 0; i < cards.length; i++) {
-            cardsArr.push(<Card key={cards[i]} />)
-        }
+        let cards = this.props.cards;
+        let cardsArr = cards.map(item => {
+            return (
+                <Card key={item} title={item.title} content={item.content} />
+            )
+        });
 
         return (
             <div key={this.props.key}>
