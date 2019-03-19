@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-class Card extends Component {
-    render() {
+export default function Card(props) {
         return (
             <div className="Card">
-                <h3>{this.props.title}</h3>
-                <p>{this.props.content}</p>
+                <h3>{props.title}</h3>
+                <p>{props.content}</p>
                 <button>Delete</button>
             </div>
         )
-    }
 }
-
-export default Card;

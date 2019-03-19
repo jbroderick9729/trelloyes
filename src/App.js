@@ -3,22 +3,25 @@ import List from './List.js'
 import './App.css';
 
 class App extends Component {
+  static defaultProps = {
+    store: {
+      lists: [],
+      allCards: {}
+    }
+  };
+  
   render() {
-    let store = this.props.store;
-    let list = store.lists;
-    let listArr = list.map(item => {
-      let cards = item.cardIds;
-      let listCards = cards.map(card => store.allCards[card]);
-      return (
-      <List key={item.id} header={item.header} cards={listCards}/>
-      )
-    });
+    const { store } = this.props;
     return (
-      <div className="App-list">
+      <div className="App">
         <header className="App-header">
-          <h1>Trelloyes</h1>
+          <h1>Trelloyes!</h1>
         </header>
-          {listArr}
+        <div className="App-list">
+          {store.lists.map(item => (
+            <List key={item.id} header={item.header} cards={item.cardIds.map(card => store.allCards[card])}/>
+            ))}
+        </div>  
       </div>
     );
   }
